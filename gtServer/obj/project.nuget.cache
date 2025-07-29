@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2HICvyxk8aQ=",
+  "success": true,
+  "projectFilePath": "/Users/Dustin/source/guitarTuneWeb/gtServer/gtServer.csproj",
+  "expectedPackageFiles": [
+    "/Users/Dustin/.nuget/packages/microsoft.aspnetcore.openapi/9.0.6/microsoft.aspnetcore.openapi.9.0.6.nupkg.sha512",
+    "/Users/Dustin/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
