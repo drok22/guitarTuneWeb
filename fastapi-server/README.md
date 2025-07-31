@@ -6,4 +6,5 @@ venv\Scripts\activate     # Windows
 # to install fastAPI
 pip install fastapi uvicorn
 
-
+# to run the server app
+uvicorn main:app --reload

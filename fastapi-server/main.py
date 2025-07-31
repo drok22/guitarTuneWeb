@@ -1,11 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from constants import REACT_APP_URL
+from objects.guitar_tuner import GuitarTuner
+from objects.scale_patterns import get_scale_pattern
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[REACT_APP_URL],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"])
@@ -23,20 +25,14 @@ def test_scale() -> list[str]:
 
 @app.get("/scale")
 def get_scale() -> dict:
-    fretboard: list[list[str]] = [[]]
-    scale: list[str] = []
+    tuner: GuitarTuner = GuitarTuner("E", "Standard", 6)
+    scale: list[str] = get_scale_pattern("E", "Pentatonic", False)
+    tuner.tune_guitar()
+
+    # FIXME: pydantic doesn't like using GuitarFretboard and GuitarString as objects here, we'll need
+    # to find a way to convert these into simple objects like we did with the c# server.
     result: dict = {
-        "fretboard": fretboard,
+        "fretboard": tuner.fretboard.strings,
         "scale": scale
     }
     return result
-
-
-@app.get("/greet/{name}")
-def greet(name: str):
-    return {"message": f"Hello, {name}!"}
-
-
-@app.post("/echo")
-def echo(data: dict):
-    return {"received": data}
